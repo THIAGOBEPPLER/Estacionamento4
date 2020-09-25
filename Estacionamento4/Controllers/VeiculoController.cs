@@ -23,8 +23,8 @@ namespace Estacionamento4.Controllers
 
             var query =
                 (from v in bd.Veiculos
-                 where (v.placa == placa)
-                 select new VerificaModel { placa = v.placa, marca = v.marca, modelo = v.modelo, cor = v.cor }).SingleOrDefault();
+                 where (v.Placa == placa)
+                 select new VerificaModel { placa = v.Placa, marca = v.Marca, modelo = v.Modelo, cor = v.Cor }).SingleOrDefault();
 
             return Ok(query);
         }
@@ -39,18 +39,18 @@ namespace Estacionamento4.Controllers
 
             var query =
                 (from v in bd.Veiculos
-                 where (v.placa == placa)
-                 select v.placa).Any();
+                 where (v.Placa == placa)
+                 select v.Placa).Any();
 
             if (query == true)
             {
                 return BadRequest("Veiculo ja existente!");
             }
 
-            veiculo.placa = request.placa;
-            veiculo.marca = request.marca;
-            veiculo.modelo = request.modelo;
-            veiculo.cor = request.cor;
+            veiculo.Placa = request.placa;
+            veiculo.Marca = request.marca;
+            veiculo.Modelo = request.modelo;
+            veiculo.Cor = request.cor;
 
             bd.Veiculos.Add(veiculo);
             bd.SaveChanges();
@@ -64,9 +64,9 @@ namespace Estacionamento4.Controllers
         {
             var query =
                 (from p in bd.Patios
-                 join v in bd.Veiculos on p.veiculoPlaca equals v.placa
-                 where p.dataFim == null
-                 select new AtivosModel { placa = v.placa, marca = v.marca, modelo = v.modelo, cor = v.cor, entrada = p.dataInicio }).ToList();
+                 join v in bd.Veiculos on p.VeiculoPlaca equals v.Placa
+                 where p.DataFim == null
+                 select new AtivosModel { placa = v.Placa, marca = v.Marca, modelo = v.Modelo, cor = v.Cor, entrada = p.DataInicio }).ToList();
 
             return query;
         }

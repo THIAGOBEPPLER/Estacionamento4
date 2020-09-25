@@ -9,11 +9,11 @@ namespace Estacionamento4.Entities
     public class Veiculo
     {
         [Key]
-        public string placa { get; set; }
-        public string marca { get; set; }
-        public string modelo { get; set; }
-        public string cor { get; set; }
-        public List<Patio> patio { get; set; }
+        public string Placa { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public string Cor { get; set; }
+        public List<Patio> Patio { get; set; }
 
     }
 }

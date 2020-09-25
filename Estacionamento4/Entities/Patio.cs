@@ -9,14 +9,14 @@ namespace Estacionamento4.Entities
     public class Patio
     {
         [Key]
-        public int id { get; set; }
-        public DateTime dataInicio { get; set; }
-        public Nullable<DateTime> dataFim { get; set; }
-        public Nullable<double> tempo { get; set; }
-        public Nullable<float> valor { get; set; }
+        public int Id { get; set; }
+        public DateTime DataInicio { get; set; }
+        public Nullable<DateTime> DataFim { get; set; }
+        public Nullable<double> Tempo { get; set; }
+        public Nullable<float> Valor { get; set; }
 
-        public string veiculoPlaca { get; set; }
-        public Veiculo veiculo { get; set; }
+        public string VeiculoPlaca { get; set; }
+        public Veiculo Veiculo { get; set; }
 
     }
 }

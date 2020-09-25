@@ -24,7 +24,7 @@ namespace Estacionamento4.Controllers
 
             var verificaCadastro =
                 (from v in bd.Veiculos
-                 where (v.placa == placa)
+                 where (v.Placa == placa)
                  select v);
 
             if (!verificaCadastro.Any())
@@ -33,7 +33,7 @@ namespace Estacionamento4.Controllers
 
             var verificaAtivo =
                 (from p in bd.Patios
-                 where p.veiculoPlaca == placa && p.dataFim == null
+                 where p.VeiculoPlaca == placa && p.DataFim == null
                  select p);
 
 
@@ -43,8 +43,8 @@ namespace Estacionamento4.Controllers
 
             var dataAtual = DateTime.Now;
 
-            patio.dataInicio = dataAtual;
-            patio.veiculoPlaca = placa;
+            patio.DataInicio = dataAtual;
+            patio.VeiculoPlaca = placa;
 
             bd.Add(patio);
             bd.SaveChanges();
@@ -61,7 +61,7 @@ namespace Estacionamento4.Controllers
 
             var query =
                 (from p in bd.Patios
-                 where p.veiculoPlaca == placa && p.dataFim == null
+                 where p.VeiculoPlaca == placa && p.DataFim == null
                  select p).SingleOrDefault();
 
             if (query == null)
@@ -75,7 +75,7 @@ namespace Estacionamento4.Controllers
             TimeSpan castDuracao;
             DateTime dataIni;
 
-            dataIni = patio.dataInicio;
+            dataIni = patio.DataInicio;
 
             castDuracao = dataAtual - dataIni;
 
@@ -88,9 +88,9 @@ namespace Estacionamento4.Controllers
                 valor = (int)(duracao / 30) * 5;
             }
 
-            patio.tempo = duracao;
-            patio.dataFim = dataAtual;
-            patio.valor = valor;
+            patio.Tempo = duracao;
+            patio.DataFim = dataAtual;
+            patio.Valor = valor;
 
             bd.Update(patio);
             bd.SaveChanges();
@@ -99,19 +99,19 @@ namespace Estacionamento4.Controllers
 
             var saida =
                 (from p in bd.Patios
-                 join v in bd.Veiculos on p.veiculoPlaca equals v.placa
-                 where v.placa == placa && p.id == patio.id
+                 join v in bd.Veiculos on p.VeiculoPlaca equals v.Placa
+                 where v.Placa == placa && p.Id == patio.Id
 
                  select new BaixaModel
                  {
-                     placa = v.placa,
-                     marca = v.marca,
-                     modelo = v.modelo,
-                     cor = v.cor,
-                     entrada = p.dataInicio,
-                     saida = p.dataFim.Value,
-                     tempo = p.tempo.Value,
-                     valor = p.valor.Value
+                     placa = v.Placa,
+                     marca = v.Marca,
+                     modelo = v.Modelo,
+                     cor = v.Cor,
+                     entrada = p.DataInicio,
+                     saida = p.DataFim.Value,
+                     tempo = p.Tempo.Value,
+                     valor = p.Valor.Value
                  }).SingleOrDefault();
 
 

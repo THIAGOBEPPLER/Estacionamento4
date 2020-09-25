@@ -7,14 +7,14 @@ namespace Estacionamento4.Models
 {
     public class BaixaModel
     {
-        public string placa { get; set; }
-        public string marca { get; set; }
-        public string modelo { get; set; }
-        public string cor { get; set; }
-        public DateTime entrada { get; set; }
-        public DateTime saida { get; set; }
-        public double tempo { get; set; }
-        public float valor { get; set; }
+        public string Placa { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public string Cor { get; set; }
+        public DateTime Entrada { get; set; }
+        public DateTime Saida { get; set; }
+        public double Tempo { get; set; }
+        public float Valor { get; set; }
 
     }
 }

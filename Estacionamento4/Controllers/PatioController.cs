@@ -17,7 +17,7 @@ namespace Estacionamento4.Controllers
         EstacionamentoContext bd = new EstacionamentoContext();
 
 
-        [HttpPut("entrada/{placa}")]
+        [HttpPost("{placa}")]
         public ActionResult<string> Entrada(string placa)
         {
             var patio = new Patio();
@@ -53,7 +53,7 @@ namespace Estacionamento4.Controllers
 
         }
 
-        [HttpPut("baixa/{placa}")]
+        [HttpPut("{placa}")]
         public ActionResult<BaixaModel> Baixa(string placa)
         {
             var veiculo = new Veiculo();
@@ -104,14 +104,14 @@ namespace Estacionamento4.Controllers
 
                  select new BaixaModel
                  {
-                     placa = v.Placa,
-                     marca = v.Marca,
-                     modelo = v.Modelo,
-                     cor = v.Cor,
-                     entrada = p.DataInicio,
-                     saida = p.DataFim.Value,
-                     tempo = p.Tempo.Value,
-                     valor = p.Valor.Value
+                     Placa = v.Placa,
+                     Marca = v.Marca,
+                     Modelo = v.Modelo,
+                     Cor = v.Cor,
+                     Entrada = p.DataInicio,
+                     Saida = p.DataFim.Value,
+                     Tempo = p.Tempo.Value,
+                     Valor = p.Valor.Value
                  }).SingleOrDefault();
 
 

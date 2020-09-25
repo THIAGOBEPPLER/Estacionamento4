@@ -7,9 +7,9 @@ namespace Estacionamento4.Models
 {
     public class VerificaModel
     {
-        public string placa { get; set; }
-        public string marca { get; set; }
-        public string modelo { get; set; }
-        public string cor { get; set; }
+        public string Placa { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public string Cor { get; set; }
     }
 }

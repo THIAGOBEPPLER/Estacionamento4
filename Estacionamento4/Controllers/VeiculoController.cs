@@ -16,7 +16,7 @@ namespace Estacionamento4.Controllers
     {
         EstacionamentoContext bd = new EstacionamentoContext();
 
-        [HttpGet("verificaPlaca/{placa}")]
+        [HttpGet("{placa}")]
         public ActionResult<VerificaModel> VerificaPlaca(string placa)
         {
             var carro = new Veiculo();
@@ -24,15 +24,15 @@ namespace Estacionamento4.Controllers
             var query =
                 (from v in bd.Veiculos
                  where (v.Placa == placa)
-                 select new VerificaModel { placa = v.Placa, marca = v.Marca, modelo = v.Modelo, cor = v.Cor }).SingleOrDefault();
+                 select new VerificaModel { Placa = v.Placa, Marca = v.Marca, Modelo = v.Modelo, Cor = v.Cor }).SingleOrDefault();
 
             return Ok(query);
         }
 
-        [HttpPut("adiciona/{placa}")]
+        [HttpPost("{placa}")]
         public ActionResult<string> Adiciona([FromBody] AdicionaModel request)
         {
-            var placa = request.placa;
+            var placa = request.Placa;
 
             var veiculo = new Veiculo();
 
@@ -47,10 +47,10 @@ namespace Estacionamento4.Controllers
                 return BadRequest("Veiculo ja existente!");
             }
 
-            veiculo.Placa = request.placa;
-            veiculo.Marca = request.marca;
-            veiculo.Modelo = request.modelo;
-            veiculo.Cor = request.cor;
+            veiculo.Placa = request.Placa;
+            veiculo.Marca = request.Marca;
+            veiculo.Modelo = request.Modelo;
+            veiculo.Cor = request.Cor;
 
             bd.Veiculos.Add(veiculo);
             bd.SaveChanges();
@@ -59,14 +59,14 @@ namespace Estacionamento4.Controllers
             return Ok("Veiculo Adicionado!");
         }
 
-        [HttpGet("ativos")]
+        [HttpGet]
         public List<AtivosModel> Ativos()
         {
             var query =
                 (from p in bd.Patios
                  join v in bd.Veiculos on p.VeiculoPlaca equals v.Placa
                  where p.DataFim == null
-                 select new AtivosModel { placa = v.Placa, marca = v.Marca, modelo = v.Modelo, cor = v.Cor, entrada = p.DataInicio }).ToList();
+                 select new AtivosModel { Placa = v.Placa, Marca = v.Marca, Modelo = v.Modelo, Cor = v.Cor, Entrada = p.DataInicio }).ToList();
 
             return query;
         }
